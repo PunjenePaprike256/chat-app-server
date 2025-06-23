@@ -8,6 +8,11 @@ const app = express();
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
 
+// Dodajemo osnovni GET endpoint za root URL
+app.get("/", (req, res) => {
+  res.send("Server radi. Dobrodošli na chat backend!");
+});
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { origin: ["http://localhost:3000"], methods: ["GET", "POST"], credentials: true },
@@ -98,5 +103,3 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server je pokrenut na portu ${PORT}`);
 });
-
-
